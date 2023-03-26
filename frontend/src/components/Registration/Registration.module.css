@@ -1,0 +1,68 @@
+.form{
+    box-sizing: border-box;
+    position: absolute;
+    width: 660px;
+    height: 289px;
+    left: calc(50% - 660px/2);
+    top: calc(50% - 289px/2 - 0.5px);
+    background: rgba(38, 38, 38, 0.75);
+    border: 5px solid #444444;
+    border-radius: 10px;
+}
+h1{
+    position: absolute;
+    width: 144px;
+    height: 28px;
+    left: calc(50% - 144px/2);
+    top: 0px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 28px;
+    display: flex;
+    align-items: center;
+    color: #FFFFFF;
+}
+h2{
+    position: absolute;
+    width: 60px;
+    height: 19px;
+    left: calc(50% - 60px/2);
+    top: 32px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.5);
+}
+.inputs{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    gap: 20px;
+
+    position: absolute;
+    width: 648px;
+    height: 156px;
+    left: calc(50% - 648px/2);
+    top: calc(50% - 180px/2 + 0.5px);
+}
+.inputs input{
+    box-sizing: border-box;
+
+
+}
+.button{
+    position: absolute;
+    width: 117px;
+    height: 27px;
+    left: calc(50% - 117px/2);
+    bottom: 19px;
+}
