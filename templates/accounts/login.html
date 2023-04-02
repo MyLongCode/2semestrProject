@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Log-in{% endblock %}
+{% block content %}
+    <h1>Log-in</h1>
+    <form method="post">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <p><input type="submit" value="Log-in"></p>
+    </form>
+        {% if user.is_authenticated %}
+            <p>you logined</p>
+        {% else %}
+            <p>Please login to see this page.</p>
+        {% endif %}
+{% endblock %}

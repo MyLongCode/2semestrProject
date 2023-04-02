@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}asd{% endblock %}</title>
+</head>
+<body>
+<p><a href="{%url 'login'%}">login</a></p>
+    <p><a href="{%url 'register'%}">register</a></p>
+<div id="header">
+    <span class="logo"></span>
+</div>
+<div id="content">
+    {% block content %}
+    {% endblock %}
+</div>
+</body>
+</html>
