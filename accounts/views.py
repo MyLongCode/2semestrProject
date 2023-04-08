@@ -4,6 +4,8 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from .forms import *
+from .serializers import *
+from rest_framework import generics
 
 
 def user_register(request):
@@ -45,28 +47,26 @@ def user_info(request):
     current_user = request.user
 
     if request.method == 'POST':
-        image_form = ImageForm(request.POST, request.FILES)
         profile_form = ProfileUpdateForm(request.POST, instance=request.user.profile)
         user_form = UserUpdateForm(request.POST, instance=request.user)
-        if profile_form.is_valid() and user_form.is_valid() and image_form.is_valid():
-            image_form.save()
+        if profile_form.is_valid() and user_form.is_valid():
             profile_form.save()
             user_form.save()
-            img_obj = image_form.instance
             return render(request, 'accounts/info.html', {'profile_form': profile_form,
-                                                          'user_form': user_form,
-                                                          'image_form': image_form,
-                                                          'img_obj': img_obj})
+                                                          'user_form': user_form})
     else:
         profile_form = ProfileUpdateForm(instance=request.user.profile)
         user_form = UserUpdateForm(instance=request.user)
-        image_form = ImageForm()
 
-    return render(request, 'accounts/info.html',  {'profile_form': profile_form,
-                                                   'user_form': user_form,
-                                                   'image_form': image_form})
+    return render(request, 'accounts/info.html', {'profile_form': profile_form,
+                                                  'user_form': user_form})
 
 
 def logout_user(request):
     logout(request)
     return redirect('login')
+
+
+class ProfileListCreate(generics.ListCreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer

@@ -5,7 +5,7 @@ from django.dispatch import receiver
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_extended')
     place = models.CharField(max_length=100)
     biography = models.CharField(max_length=200)
     count_followers = models.IntegerField(default=0)
@@ -24,11 +24,3 @@ def create_user_profile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
-
-
-class Image(models.Model):
-    name = models.CharField(max_length=50)
-    image = models.ImageField(upload_to='images/')
-
-    def __str__(self):
-        return self.name
