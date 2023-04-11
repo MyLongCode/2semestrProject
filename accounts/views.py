@@ -7,39 +7,48 @@ from .forms import *
 from .serializers import *
 from rest_framework import generics
 
+from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
+from django.contrib.auth.models import Group
+from django.views.generic import CreateView
 
-def user_register(request):
-    if request.method == 'POST':
-        form = RegisterForm(request.POST)
+from django.contrib.auth.views import LoginView
+from django.contrib.auth import authenticate, login, logout
+
+
+class SignUpView(CreateView):
+    form_class = UserCreationForm
+    success_url = reverse_lazy('homepage')
+    template_name = 'accounts/register.html'
+
+    # Set user Group on registration
+    def post(self, request, *args, **kwargs):
+        form = UserCreationForm(request.POST)
         if form.is_valid():
-            username = form.cleaned_data.get('username')
-            if User.objects.filter(username=username).exists():
-                raise ValidationError("Email exists")
-            else:
-                form.save()
-                return redirect('login')
-    else:
-        form = RegisterForm()
-    return render(request, 'accounts/register.html', {'form': form})
+            user = form.save(commit=False)
+            user.save()
 
+            # One user Group
+            # user_group = Group.objects.get(name=form.cleaned_data['groups'])
+            # user.groups.add(user_group)
 
-def user_login(request):
-    if request.method == 'POST':
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            cd = form.cleaned_data
-            user = authenticate(username=cd['username'], password=cd['password'])
-            if user is not None:
-                if user.is_active:
-                    login(request, user)
-                    return redirect('info')
-                else:
-                    return HttpResponse('Disabled account')
-            else:
-                return HttpResponse('Invalid login')
-    else:
-        form = LoginForm()
-    return render(request, 'accounts/login.html', {'form': form})
+            # Multiple user Groups
+            # for form_ug in form.cleaned_data['groups']:
+            #     user_group = Group.objects.get(name=form_ug.name)
+            #     user.groups.add(user_group)
+
+            # logout previouse user
+            logout(request)
+
+            # Authenticate and login user after registration
+            new_user = authenticate(username=form.cleaned_data['username'],
+                                    password=form.cleaned_data['password1'],
+                                    )
+            login(request, new_user)
+
+            return redirect('login')
+        else:
+            return render(request, self.template_name, {'form' : form })
 
 
 @login_required
@@ -47,20 +56,24 @@ def user_info(request):
     current_user = request.user
 
     if request.method == 'POST':
-        profile_form = ProfileUpdateForm(request.POST, instance=request.user.profile)
         user_form = UserUpdateForm(request.POST, instance=request.user)
-        if profile_form.is_valid() and user_form.is_valid():
-            profile_form.save()
+        if user_form.is_valid():
             user_form.save()
-            return render(request, 'accounts/info.html', {'profile_form': profile_form,
-                                                          'user_form': user_form})
+            return render(request, 'accounts/info.html', {'user_form': user_form})
     else:
-        profile_form = ProfileUpdateForm(instance=request.user.profile)
         user_form = UserUpdateForm(instance=request.user)
 
-    return render(request, 'accounts/info.html', {'profile_form': profile_form,
-                                                  'user_form': user_form})
+    return render(request, 'accounts/info.html', {'user_form': user_form})
 
+
+class LoginView(LoginView):
+    template_name = 'accounts/login.html'
+
+    # Redirect from login page in case user already authenticated and loggedin
+    def get(self, request, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            return redirect('info')
+        return self.render_to_response(self.get_context_data())
 
 def logout_user(request):
     logout(request)
