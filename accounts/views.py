@@ -1,15 +1,10 @@
-from django.core.exceptions import ValidationError
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
-from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login, logout
 from .forms import *
 from .serializers import *
 from rest_framework import generics
 
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.contrib.auth.models import Group
 from django.views.generic import CreateView
 
 from django.contrib.auth.views import LoginView
@@ -69,11 +64,11 @@ def user_info(request):
 class LoginView(LoginView):
     template_name = 'accounts/login.html'
 
-    # Redirect from login page in case user already authenticated and loggedin
     def get(self, request, *args, **kwargs):
         if self.request.user.is_authenticated:
             return redirect('info')
         return self.render_to_response(self.get_context_data())
+
 
 def logout_user(request):
     logout(request)

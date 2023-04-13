@@ -1,0 +1,22 @@
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+   {{ form.as_p }}
+  <button type="submit">Upload</button>
+</form>
+
+{% if img_obj %}
+  <h3>Succesfully uploaded : {{img_obj.image}}</h3>
+  <img src="{{ img_obj.image.url }}" alt="error" style="max-height:300px">
+
+  <figure>
+    <figcaption>{{img_obj.title}}</figcaption>
+    <audio
+        controls
+        src="{{ img_obj.music.url }}">
+            <a href="{{ img_obj.music.url }}">
+                Download audio
+            </a>
+    </audio>
+  </figure>
+{% endif %}
+

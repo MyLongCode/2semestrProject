@@ -13,3 +13,7 @@ class User(AbstractUser):
     count_followers = models.IntegerField(default=0)
     image_url = models.URLField(blank=True)
 
+
+
+
+
