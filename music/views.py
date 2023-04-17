@@ -24,7 +24,6 @@ def music_upload_view(request):
             music.owner = request.user
             music.create_time = timezone.now()
             music.save()
-            # Get the current instance object to display in the template
             img_obj = form.instance
             return render(request, 'music/upload_music.html', {'form': form, 'img_obj': img_obj})
     else:
@@ -34,4 +33,9 @@ def music_upload_view(request):
 
 class MusicListCreate(generics.ListCreateAPIView):
     queryset = Music.objects.all()
+    serializer_class = MusicSerializer
+
+
+class MusicDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Music
     serializer_class = MusicSerializer

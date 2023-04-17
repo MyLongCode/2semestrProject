@@ -34,3 +34,8 @@ def post_upload_view(request):
 class PostsListCreate(generics.ListCreateAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
+
+
+class PostDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Post
+    serializer_class = PostSerializer

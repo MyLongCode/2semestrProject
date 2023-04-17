@@ -1,9 +1,12 @@
 from django.contrib.auth.decorators import login_required
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
 from .forms import *
 from .serializers import *
-from rest_framework import generics
+from rest_framework import generics, status, permissions
 
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 
@@ -77,4 +80,9 @@ def logout_user(request):
 
 class ProfileListCreate(generics.ListCreateAPIView):
     queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+
+class ProfileDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = User
     serializer_class = UserSerializer
