@@ -14,6 +14,12 @@ class User(AbstractUser):
     image_url = models.URLField(blank=True)
 
 
+class Followers(models.Model):
+    first_follower = models.IntegerField()
+    second_follower = models.IntegerField()
+    status = models.IntegerField(default=-1) # -1 запрос от first_user, +1 запрос от second_user, 0 - friend_list
+
+
 
 
 

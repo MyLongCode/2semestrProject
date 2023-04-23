@@ -86,3 +86,13 @@ class ProfileListCreate(generics.ListCreateAPIView):
 class ProfileDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = User
     serializer_class = UserSerializer
+
+
+class FollowersListCreate(generics.ListCreateAPIView):
+    queryset = Followers.objects.all()
+    serializer_class = FollowersSerializer
+
+
+class FollowersDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Followers
+    serializer_class = FollowersSerializer

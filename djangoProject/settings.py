@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'frontend',
     'rest_framework',
     'corsheaders',
+    'comments.apps.CommentsConfig',
     'music.apps.MusicConfig',
     'posts.apps.PostsConfig',
     'accounts.apps.AccountsConfig',

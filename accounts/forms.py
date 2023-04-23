@@ -34,3 +34,9 @@ class UserChangeForm(UserChangeForm):
     class Meta:
         model = User
         fields = ('first_name', 'last_name', 'place', 'biography', 'count_followers', 'image_url')
+
+
+class FollowersForm(forms.ModelForm):
+    class Meta:
+        model = Followers
+        fields = ('first_follower', 'second_follower', 'status')
