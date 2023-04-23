@@ -1,0 +1,153 @@
+.main{
+    width: 100%;
+    height: 300px;
+
+}
+.addPost{
+    box-sizing: border-box;
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 10px;
+    gap: 20px;
+
+    position: absolute;
+    width: 239px;
+    height: 29px;
+    left:calc(50% - 239px/2);
+    top: 230px;
+
+    /* Черный(75%) */
+
+    background: rgba(38, 38, 38, 0.75);
+    /* Серый */
+
+    border: 2px solid #444444;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+}
+.addPost a{
+    /* Кнопка */
+
+
+    width: 171px;
+    height: 19px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    text-decoration: none;;
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    /* Белый */
+
+    color: #FFFFFF;
+}
+.addPost:hover{
+    cursor: pointer;
+}
+.posts{
+    width: 100%;
+    height: 400px;
+    margin-left: 0px;
+    position: absolute;
+    top: 68%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* Черный(50%) */
+
+    background: rgba(23, 23, 23, 0.5);
+
+}
+.createPost{
+    width: 100%;
+    height: 400px;
+    position: absolute;
+    top: 68%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* Черный(50%) */
+
+    background: rgba(23, 23, 23, 0.5);
+
+}
+.form h1{
+    position: absolute;
+    width: 200px;
+    height: 28px;
+    left: calc(50% - 144px/2);
+    top:-0%;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 28px;
+    display: flex;
+    align-items: center;
+    color: #FFFFFF;
+}
+.addFile{
+    width: 201px;
+    height: 24px;
+
+    /* Фиолетоый(Светлый) */
+
+    background: #9147FF;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+}
+.inputs{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    gap: 20px;
+
+    position: absolute;
+    width: 648px;
+    height: 256px;
+    left: calc(50% - 648px/2);
+    top: calc(50% - 180px/2 + 10px);
+}
+.inputs input{
+    box-sizing: border-box;
+    background-color:#262626;
+    border:2px solid  #444444; 
+    border-radius: 5px;
+    width:620px;
+    height: 32px;
+    color: rgba(255, 255, 255, 0.5);
+    font-size:20px;
+}
+.button button{
+    width: 134.5px;
+    height: 29px;
+
+    background: #47A7FF;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    /* identical to box height */
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #FFFFFF;
+}
+.button button:hover{
+    cursor: pointer;
+}
