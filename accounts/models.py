@@ -11,7 +11,7 @@ class User(AbstractUser):
     place = models.CharField(max_length=100)
     biography = models.CharField(max_length=200)
     count_followers = models.IntegerField(default=0)
-    image_url = models.URLField(blank=True)
+    image_url = models.ImageField(upload_to='uploads/images/', null=True)
 
 
 class Followers(models.Model):

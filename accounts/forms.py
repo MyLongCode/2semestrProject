@@ -6,16 +6,9 @@ from django import forms
 
 
 class UserUpdateForm(forms.ModelForm):
-    first_name = forms.CharField(max_length=100)
-    last_name = forms.CharField(max_length=100)
-    place = forms.CharField(max_length=100)
-    biography = forms.CharField(max_length=200)
-    count_followers = forms.IntegerField()
-    image_url = forms.URLField()
-
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'place', 'biography']
+        fields = ['first_name', 'last_name', 'place', 'biography', 'image_url']
 
 
 class UserCreationForm(UserCreationForm):
