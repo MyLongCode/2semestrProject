@@ -24,4 +24,3 @@ class FollowersSerializer(serializers.ModelSerializer):
     class Meta:
         model = Followers
         fields = ['first_follower', 'second_follower', 'status']
-

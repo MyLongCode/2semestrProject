@@ -46,7 +46,7 @@ class SignUpView(CreateView):
 
             return redirect('login')
         else:
-            return render(request, self.template_name, {'form' : form })
+            return render(request, self.template_name, {'form': form})
 
 
 @login_required
@@ -96,3 +96,13 @@ class FollowersListCreate(generics.ListCreateAPIView):
 class FollowersDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Followers
     serializer_class = FollowersSerializer
+
+
+from rest_framework.decorators import api_view
+
+
+@api_view(['GET'])
+def user_list(request, ):
+    users = User.objects.all().order_by('username')
+    serializer = UserSerializer(instance=users, many=True)
+    return Response(serializer.data)
