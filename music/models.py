@@ -2,6 +2,7 @@ from django.db import models
 
 from accounts.models import User
 from validators import validate_is_music
+from taggit.managers import TaggableManager
 
 
 class Music(models.Model):
@@ -11,5 +12,5 @@ class Music(models.Model):
     music = models.FileField(upload_to='uploads/music/', validators=(validate_is_music,))
     count_likes = models.IntegerField(default=0)
     create_time = models.DateTimeField(auto_now=True)
-
+    tags = TaggableManager()
 

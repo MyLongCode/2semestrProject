@@ -1,15 +1,19 @@
 from rest_framework import serializers
 from .models import *
+from taggit.serializers import (TagListSerializerField,
+                                TaggitSerializer)
 
 
-class MusicSerializer(serializers.ModelSerializer):
+class MusicSerializer(TaggitSerializer, serializers.ModelSerializer):
+    tags = TagListSerializerField()
+
     class Meta:
         model = Music
-        fields = ['id', 'title', 'image', 'music', 'create_time', 'owner', 'count_likes']
+        fields = '__all__'
 
 
-class MusicDetailSerializer(serializers.ModelSerializer):
+class MusicDetailSerializer(TaggitSerializer, serializers.ModelSerializer):
     class Meta:
         model = Music
-        fields = ['id', 'title', 'image', 'music', 'create_time', 'owner', 'count_likes']
+        fields = ['id', 'tags', 'title', 'image', 'music', 'create_time', 'owner', 'count_likes']
         extra_kwargs = {'mus': {'required': False}}
