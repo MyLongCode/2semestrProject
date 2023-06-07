@@ -17,3 +17,15 @@ class MusicDetailSerializer(TaggitSerializer, serializers.ModelSerializer):
         model = Music
         fields = ['id', 'tags', 'title', 'image', 'music', 'create_time', 'owner', 'count_likes']
         extra_kwargs = {'mus': {'required': False}}
+
+
+class PlayListToUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PlayListToUser
+        fields = '__all__'
+
+
+class PlayListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PlayList
+        fields = '__all__'

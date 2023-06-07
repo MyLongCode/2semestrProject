@@ -14,3 +14,14 @@ class Music(models.Model):
     create_time = models.DateTimeField(auto_now=True)
     tags = TaggableManager()
 
+
+class PlayList(models.Model):
+    name = models.CharField(max_length=50)
+    is_private = models.BooleanField(default=True)
+    create_time = models.DateTimeField(auto_now=True)
+
+
+class PlayListToUser(models.Model):
+    list_id = models.ManyToManyField(PlayList, default=0)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    music = models.ManyToManyField(Music)
