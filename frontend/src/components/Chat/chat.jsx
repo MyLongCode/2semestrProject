@@ -17,7 +17,7 @@ const useStyles = (theme) => ({
   },
 });
 
-class App extends Component {
+class Chat extends Component {
   state = {
     filledForm: false,
     messages: [],
@@ -147,4 +147,4 @@ class App extends Component {
     );
   }
 }
-export default withStyles(useStyles)(App);
+export default withStyles(useStyles)(Chat);

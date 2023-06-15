@@ -1,0 +1,38 @@
+
+.player{
+    width: 1190px;
+    height: 60px;
+    margin-top: 42px;
+    margin-left: -14px;
+    position: fixed;
+    top: 90%;
+    left: 49%;
+    margin-right: -50%;
+    background-color: aliceblue;
+    transform: translate(-50%, -50%);
+    background: #262626;
+    /* Inside auto layout */
+
+    flex: none;
+    order: 3;
+    align-self: stretch;
+    flex-grow: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+.pause{
+    position: relative;
+    right:43%;
+    top:18px;
+}
+.pause:hover{
+    cursor: pointer;
+}
+.time{
+    color:white;
+    font-size:24px;
+    position: relative;
+    top:-20px;
+}
